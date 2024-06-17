@@ -1,5 +1,5 @@
 const express = require('express');
-const readline = require('readline'); 
+const readline = require('readline');
 const { MongoClient } = require('mongodb');
 const cors = require('cors');
 require('dotenv').config();
@@ -23,26 +23,19 @@ async function run() {
         await client.connect();
         const database = client.db('Apti');
 
-        rl.question("Enter T for trains database and S for Speed: ", async (userInput) => {
-            let collectionName = 'Train'; 
-
-            if (userInput === 'S') {
-                collectionName = 'Speed';
-            }
-
-            const collection = database.collection(collectionName);
-
-            app.get('/questions', async (req, res) => {
-                const questions = await collection.find({}).toArray();
-                res.json(questions);
-            });
-
-            app.listen(port, () => {
-                console.log(`Server running on port ${port}`);
-            });
-
-            rl.close(); 
+        app.get('/questions/:path', async (req, res) => {
+            const path = req.params.path;
+            const collection = database.collection(path);
+            console.log(path);
+            const questions = await collection.find({}).toArray();
+            res.json(questions);
         });
+
+        app.listen(port, () => {
+            console.log(`Server running on port ${port}`);
+        });
+
+        rl.close();
     } catch (error) {
         console.error(error);
     }

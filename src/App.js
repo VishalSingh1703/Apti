@@ -1,15 +1,17 @@
 import React from 'react';
-import Header from './Header';
-import QuestionList from './Questionlist';
-import { Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Components/Home';
+import QuestionList from './Components/Questionlist';
 
-const App = () => {
+function App() {
     return (
-        <Container>
-            <Header />
-            <QuestionList />
-        </Container>
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/questions/:path" element={<QuestionList />} />
+            </Routes>
+        </Router>
     );
-};
+}
 
 export default App;
