@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -50,11 +51,29 @@ const Home = () => {
                     </div>
                 ))}
             </div>
+=======
+import React from 'react';
+import { Link } from 'react-router-dom';
+import topics from '../config/configuration';
+
+const Home = () => {
+    return (
+        <div className="container">
+            <h1 className="my-4">Aptitude Practice Topics</h1>
+            <ul className="list-group">
+                {topics.map((topic, index) => (
+                    <li key={index} className="list-group-item">
+                        <Link to={`/questions${topic.path}`}>{topic.title}</Link>
+                    </li>
+                ))}
+            </ul>
+>>>>>>> 4695a9008ab842897d96966129aec62dfdce41f9
         </div>
     );
 };
 
 export default Home;
+<<<<<<< HEAD
 
 const styles = {
     container: {
@@ -127,3 +146,5 @@ const styles = {
         textDecoration: 'none', // Ensure links look like buttons
     },
 };
+=======
+>>>>>>> 4695a9008ab842897d96966129aec62dfdce41f9
